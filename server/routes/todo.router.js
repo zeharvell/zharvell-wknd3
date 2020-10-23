@@ -39,4 +39,19 @@ router.post('/', function (req, res) {
     });
 });
 
+router.get('/', function (req, res) {
+  console.log('IN GET route');
+  const query = 'SELECT * FROM "ToDoList";';
+  pool
+    .query(query)
+    .then((results) => {
+      console.log(results);
+      res.send(results.rows);
+    })
+    .catch((error) => {
+      console.log('Error making GET', error);
+      res.sendStatus(500);
+    });
+});
+
 module.exports = router;
