@@ -70,4 +70,20 @@ router.delete('/:id', (req, res) => {
     });
 });
 
+router.put('/status/:id', (req, res) => {
+  const newTaskInfo = req.body;
+  const querryText = 'UPDATE "ToDoList" SET status=$1 WHERE id=$2';
+  const querryArray = [newTaskInfo.status, req.params.id];
+
+  pool
+    .query(querryText, querryArray)
+    .then((dbResponse) => {
+      res.sendStatus(200);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.sendStatus(500);
+    });
+});
+
 module.exports = router;
