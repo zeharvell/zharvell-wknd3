@@ -54,4 +54,20 @@ router.get('/', function (req, res) {
     });
 });
 
+router.delete('/:id', (req, res) => {
+  const todoId = req.params.id;
+  const querryText = 'Delete from "ToDoList" WHERE id=$1 ;';
+  const querryArrayData = [todoId];
+
+  pool
+    .query(querryText, querryArrayData)
+    .then((dbResponse) => {
+      res.sendStatus(200);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.sendStatus(500);
+    });
+});
+
 module.exports = router;
