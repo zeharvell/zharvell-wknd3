@@ -81,7 +81,7 @@ function updateStatus(newStatus, id) {
   console.log(newStatus);
   if (newStatus === false) {
     newStatus = true;
-  } else if (newsStatus === true) {
+  } else if (newStatus === true) {
     newStatus = false;
   }
   $.ajax({
@@ -109,14 +109,17 @@ function render(dataLibrary) {
   $toDoListBody.empty();
   for (let i = 0; i < dataLibrary.length; i++) {
     const listData = dataLibrary[i];
-
+    let colorIndicator = '';
+    if (listData.status === true) {
+      colorIndicator = 'yesno';
+    }
     $toDoListBody.append(`
-       <tr>
+       <tr class="${colorIndicator}">
         <td>${listData.title}</td>
         <td class="js-rank">${listData.status}</td>
         <td>
         <button class="js-btn-delete" data-id="${listData.id}">Delete</button>
-        <button class="js-btn-update" data-status="${listData.status}" data-id="${listData.id}">Update</button>
+        <button class="js-btn-update" data-status="${listData.status}" data-id="${listData.id}">Complete</button>
         </td>
         </tr>        
         `);
