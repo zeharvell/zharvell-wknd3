@@ -73,7 +73,7 @@ function postListData(payload0bject) {
 function deleteList(listId) {
   $.ajax({
     method: 'DELETE',
-    url: `/:id/${listId}`,
+    url: `/todolist/${listId}`,
   })
     .then((deleteMessage) => {
       getListData();
