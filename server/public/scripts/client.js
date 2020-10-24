@@ -16,16 +16,9 @@ function handleUpdate() {
   const btnText = $btn.text();
   const $tdStatus = $btn.parent().parent().children('.js-status');
 
-  if (btnText === 'Update') {
-    $tdStatus.html(
-      `<input type="text" placeholder="status" value="${currentStatus}" />`
-    );
-    $btn.text('Save');
-  } else {
-    const statusUpdate = $tdStatus.children('input').val();
-    const id = $btn.data('id');
-    updateStatus(statusUpdate, id);
-  }
+  const id = $btn.data('id');
+  console.log('id', id);
+  updateStatus(currentStatus, id);
 }
 
 function handleClickSave() {
@@ -85,9 +78,15 @@ function deleteList(listId) {
 }
 
 function updateStatus(newStatus, id) {
+  console.log(newStatus);
+  if (newStatus === false) {
+    newStatus = true;
+  } else if (newsStatus === true) {
+    newStatus = false;
+  }
   $.ajax({
     method: 'PUT',
-    url: `/status/:id${id}`,
+    url: `/todolist/status/${id}`,
     data: { status: newStatus },
   })
     .then((putMessage) => {
@@ -117,7 +116,7 @@ function render(dataLibrary) {
         <td class="js-rank">${listData.status}</td>
         <td>
         <button class="js-btn-delete" data-id="${listData.id}">Delete</button>
-        <button class="js-btn update" data-status="${listData.status}" data-id="${listData.id}">Update</button>
+        <button class="js-btn-update" data-status="${listData.status}" data-id="${listData.id}">Update</button>
         </td>
         </tr>        
         `);
