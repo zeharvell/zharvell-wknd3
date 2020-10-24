@@ -57,7 +57,7 @@ function getListData() {
 function postListData(payload0bject) {
   $.ajax({
     type: 'POST',
-    url: '/',
+    url: '/todolist',
     data: payload0bject,
   })
     .then(function (response) {
