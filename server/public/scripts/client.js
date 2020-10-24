@@ -46,7 +46,7 @@ function handleDelete() {
 function getListData() {
   $.ajax({
     type: 'GET',
-    url: '/dataLibrary',
+    url: '/todolist',
   }).then(function (response) {
     console.log('GET', response);
 
@@ -57,7 +57,7 @@ function getListData() {
 function postListData(payload0bject) {
   $.ajax({
     type: 'POST',
-    url: '/dataLibrary',
+    url: '/',
     data: payload0bject,
   })
     .then(function (response) {
@@ -73,7 +73,7 @@ function postListData(payload0bject) {
 function deleteList(listId) {
   $.ajax({
     method: 'DELETE',
-    url: `/dataLibrary/${dataId}`,
+    url: `/:id/${listId}`,
   })
     .then((deleteMessage) => {
       getListData();
@@ -87,7 +87,7 @@ function deleteList(listId) {
 function updateStatus(newStatus, id) {
   $.ajax({
     method: 'PUT',
-    url: `/dataLibrary/status/${id}`,
+    url: `/status/:id${id}`,
     data: { status: newStatus },
   })
     .then((putMessage) => {
@@ -105,7 +105,7 @@ function clearForm() {
 }
 
 function render(dataLibrary) {
-  const $toDoListBody = $(#js - toDoListBody);
+  const $toDoListBody = $('#js-toDoListBody');
 
   $toDoListBody.empty();
   for (let i = 0; i < dataLibrary.length; i++) {
